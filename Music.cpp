@@ -34,7 +34,7 @@ Music::Music(Music &&other) noexcept : name{other.name}, autor{other.autor}, lon
     other.longing = nullptr;
     cout << "Music move constructor was called" << endl;
 }
-//-------------------------------------
+//---------------------------------------------------------------------------------------------------------------------
 
 Music_Pop::Music_Pop()
 : Music(), genre{new string("Unknown")} {cout << "Music_Pop constructor was called" << endl;}

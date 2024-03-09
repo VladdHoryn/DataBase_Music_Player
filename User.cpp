@@ -66,4 +66,21 @@ User::User(User &&other)
     other.date = nullptr;
     cout << "User move constructor was called" << endl;
 }
+//--------------------------------------------------------------------------------------------------------------------
+PremiumUser::PremiumUser()
+: User(), sub(new Subscription()), rang{new int(0)}{}
+PremiumUser::PremiumUser(std::string &&new_name, std::string &&new_nickname, std::string &&new_email, int &&new_day,
+                         int &&new_month, int &&new_year, std::string &&new_name_sub, int &&new_price,
+                         int &&new_longing, std::string &&new_features, int &&new_rang)
+                         : User(forward<string>(new_name), forward<string>(new_nickname), forward<string>(new_email),
+                                forward<int>(new_day), forward<int>(new_month), forward<int>(new_year)),
+                                sub(new Subscription(forward<string>(new_name_sub), forward<int>(new_price), forward<int>(new_longing),
+                                                     forward<string>(new_features))), rang{new int (new_rang)} {                       // не працює конструктор до sub!!!!!!
+    cout << "PremiumUser costructor was called" << endl;
+}
 
+void PremiumUser::Print() {
+    User::Print();
+    sub->Print();
+    cout << "Rang: " << *rang << endl;
+}

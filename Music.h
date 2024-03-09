@@ -6,9 +6,9 @@
 using namespace std;
 class Music {
 protected:
-    string *name = new string();
-    string *autor = new string();
-    int *longing = new int();
+    string *name;
+    string *autor;
+    int *longing;
 
 public:
     virtual ~Music(){
@@ -30,7 +30,7 @@ public:
 
 class Music_Pop: public Music{
 protected:
-    string *genre = new string();
+    string *genre;
 public:
     virtual ~Music_Pop(){
         cout << "Music_Pop dectructor was called" << endl;

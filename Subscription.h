@@ -6,10 +6,10 @@ using namespace std;
 
 class Subscription {
 protected:
-    string *name = new string();
-    int *price = new int();
-    int *longing = new int();
-    string *features = new string();
+    string *name;
+    int *price;
+    int *longing;
+    string *features;
 public:
     Subscription();
     Subscription(string &&new_name, int &&new_price, int &&new_longing, string &&new_features);
