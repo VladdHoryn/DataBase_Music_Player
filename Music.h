@@ -30,16 +30,17 @@ public:
 
 class Music_Pop: public Music{
 protected:
-    string *genre;
+    string *genre = new string();
 public:
     virtual ~Music_Pop(){
         cout << "Music_Pop dectructor was called" << endl;
         delete genre;
     };
     Music_Pop();
-    Music_Pop(string &&new_name, string &&new_author, int &&new_longing);
+    Music_Pop(string &&new_name, string &&new_author, int &&new_longing, string &&new_genre);
     void Play_Music() override;
     void Print() override;
+    void New_genre(string &&new_genre);
 
     Music_Pop(const Music_Pop &other);
     Music_Pop(Music_Pop &&other) noexcept;

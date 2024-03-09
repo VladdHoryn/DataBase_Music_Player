@@ -37,9 +37,9 @@ Music::Music(Music &&other) noexcept : name{other.name}, autor{other.autor}, lon
 //-------------------------------------
 
 Music_Pop::Music_Pop()
-: Music(), genre{new string("Pop")} {cout << "Music_Pop constructor was called" << endl;}
-Music_Pop::Music_Pop(std::string &&new_name, std::string &&new_author, int &&new_longing)
-: Music(forward<string>(new_name), forward<string>(new_author), forward<int>(new_longing)), genre{new string("Pop")} {cout << "Music_Pop constructor was called" << endl;}
+: Music(), genre{new string("Unknown")} {cout << "Music_Pop constructor was called" << endl;}
+Music_Pop::Music_Pop(std::string &&new_name, std::string &&new_author, int &&new_longing, string &&new_genre)
+: Music(forward<string>(new_name), forward<string>(new_author), forward<int>(new_longing)), genre{new string(new_genre)} {cout << "Music_Pop constructor was called" << endl;}
 
 void Music_Pop::Play_Music() {
     cout << "Easy, calm pop music is played" << endl;
@@ -49,6 +49,10 @@ void Music_Pop::Print() {
     << "Author: " << *autor << endl
     << "Longing: " << *longing << endl
     << "Genre: " << *genre << endl;
+}
+
+void Music_Pop::New_genre(std::string &&new_genre) {
+    *genre = new_genre;
 }
 
 Music_Pop::Music_Pop(const Music_Pop &other) : Music(other){
@@ -63,7 +67,8 @@ Music_Pop::Music_Pop(const Music_Pop &other) : Music(other){
     cout << "Deep copy constryctor Music_Pop was called" << endl;
 }
 Music_Pop::Music_Pop(Music_Pop &&other) noexcept
-: Music(other){
+: Music(other), genre{other.genre}{
+    other.genre = nullptr;
     cout << "Music_Pop move constructor was called" << endl;
 
 }
