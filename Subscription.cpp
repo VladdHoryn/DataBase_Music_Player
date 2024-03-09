@@ -56,4 +56,5 @@ Subscription::Subscription(Subscription &&other) noexcept
     other.price = nullptr;
     other.longing = nullptr;
     other.features = nullptr;
+    cout << "Subscription move constructor was called" << endl;
 }
