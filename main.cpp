@@ -1,9 +1,11 @@
 #include <iostream>
 #include "Music.h"
+#include <vector>
 
 int main() {
-    Music_Pop a;
-    a.Play_Music();
-    a.New_name("Anton");
+
+    vector <Music_Pop> a;
+    a.push_back(Music_Pop());
+
     return 0;
 }
