@@ -11,10 +11,6 @@ Subscription::Subscription(std::string &&new_name, int &&new_price, int &&new_lo
     cout << "Subscription consructor was called" << endl;
 }
 Subscription::~Subscription(){
-    delete name;
-    delete price;
-    delete longing;
-    delete features;
     cout << "Subscription destructor was called" << endl;
 }
 
@@ -40,13 +36,13 @@ void Subscription::Print() {
 }
 
 Subscription::Subscription(const Subscription &other) {
-    name = new string;
+    name = make_shared<string>(*other.name);
     *name = *other.name;
-    price = new int;
+    price = make_shared<int>(*other.price);
     *price = *other.price;
-    longing = new int;
+    longing = make_shared<int>(*other.longing);
     *longing = *other.longing;
-    features = new string();
+    features = make_shared<string>(*other.features);
     *features = *other.features;
     cout << "Deep copy constryctor Subscription was called" << endl;
 }

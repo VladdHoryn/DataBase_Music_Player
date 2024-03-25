@@ -1,15 +1,16 @@
 #ifndef DATABASE_MUSIC_PLAYER_SUBSCRIPTION_H
 #define DATABASE_MUSIC_PLAYER_SUBSCRIPTION_H
 #include <string>
+#include <memory>
 
 using namespace std;
 
 class Subscription {
 protected:
-    string *name;
-    int *price;
-    int *longing;
-    string *features;
+    shared_ptr<string> name = make_shared<string>();
+    shared_ptr<int> price = make_shared<int>();
+    shared_ptr<int> longing = make_shared<int>();
+    shared_ptr<string> features = make_shared<string>();
 public:
     Subscription();
     Subscription(string &&new_name, int &&new_price, int &&new_longing, string &&new_features);

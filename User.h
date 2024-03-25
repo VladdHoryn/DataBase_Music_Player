@@ -2,6 +2,7 @@
 #define DATABASE_MUSIC_PLAYER_USER_H
 #include <string>
 #include <iostream>
+#include <memory>
 #include "Subscription.h"
 
 using namespace std;
@@ -16,10 +17,10 @@ struct Date{
 
 class User {
 private:
-    string *name;
-    string *nickname;
-    string *email;
-    Date *date;
+    shared_ptr<string> name = make_shared<string>();
+    shared_ptr<string> nickname = make_shared<string>();
+    shared_ptr<string> email = make_shared<string>();
+    shared_ptr<Date> date = make_shared<Date>(0,0,0);
 public:
     virtual ~User();
     User();
@@ -35,8 +36,8 @@ public:
 
 class PremiumUser : public User{
 protected:
-    Subscription *sub;
-    int *rang;
+    shared_ptr<Subscription> sub = make_shared<Subscription>();
+    shared_ptr<int> rang = make_shared<int>();
 public:
     PremiumUser();
     PremiumUser(string &&new_name, string &&new_nickname, string &&new_email, int &&new_day, int &&new_month, int &&new_year,

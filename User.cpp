@@ -5,10 +5,6 @@
 
 User::~User() {
     cout << "User destructor was called" << endl;
-    delete date;
-    /*delete name;
-    delete nickname;
-    delete email;*/
 };
 User::User()
 : name{new string("Unknown")}, nickname{new string("Unknown")}, email{new string("Unknown")}, date{new Date(0, 0, 0)}{}
@@ -48,13 +44,13 @@ void User::Print() {
 }
 
 User::User(const User &other) {
-    name = new string();
+    name = make_shared<string>(*other.name);
     *name = *other.name;
-    nickname = new string();
+    nickname = make_shared<string>(*other.nickname);
     *nickname = *other.nickname;
-    email = new string();
+    email = make_shared<string>(*other.email);
     *email = *other.email;
-    date = new Date(0, 0, 0);
+    date = make_shared<Date>(*other.date);
     *date = *other.date;
     cout << "Deep copy constryctor User was called" << endl;
 }
