@@ -55,6 +55,57 @@ void Music_Pop::New_genre(std::string &&new_genre) {
     *genre = new_genre;
 }
 
+ostream &operator <<(ostream &os, Music_Pop &obj)
+{
+    os << obj.name << endl
+    << obj.author << endl
+    << obj.longing << endl
+    << obj.genre << endl;
+    return os;
+
+}
+
+istream &operator >>(istream &is, Music_Pop &obj)
+{
+    is >> *obj.author >> *obj.longing >> *obj.genre;
+    return is;
+}
+
+/*void Music_Pop::Read() {
+    try
+    {
+        ifstream file("C:/Users/Vlad/Documents/C++/Laba_OOP/Database_Music_Player/Music_pop.txt");
+        if(!file)
+            throw FileWasNotOpened();
+        file >> *name;
+        file >> *author;
+        file >> *longing;
+        file >> *genre;
+
+        file.close();
+    }
+    catch(FileWasNotOpened &ex)
+    {
+        cout << "File was not opened" << endl;
+    }
+}*/
+
+/*void Music_Pop::Write() {
+    try {
+        ofstream file("C:/Users/Vlad/Documents/C++/Laba_OOP/Database_Music_Player/Music_pop.txt");
+        if(!file)
+            throw FileWasNotOpened();
+        file << *name << endl;
+        file << *author << endl;
+        file << *longing << endl;
+        file << *genre << endl;
+
+    }
+    catch(FileWasNotOpened &ex){
+        cout << "File was not opened" << endl;
+    }
+}*/
+
 Music_Pop::Music_Pop(const Music_Pop &other) : Music(other){
     genre = make_shared<string>(*other.genre);
     *genre = *other.genre;

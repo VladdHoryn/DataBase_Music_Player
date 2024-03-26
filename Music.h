@@ -3,6 +3,9 @@
 #include <string>
 #include <iostream>
 #include <memory>
+#include <fstream>
+#include "FileWasNotOpened.h"
+
 
 using namespace std;
 class Music{
@@ -38,6 +41,10 @@ public:
     void Play_Music() override;
     void Print() override;
     void New_genre(string &&new_genre);
+    friend ostream &operator <<(ostream &os, Music_Pop &obj);
+    friend istream &operator >>(istream &is, Music_Pop &obj);
+    /*void Read();
+    void Write();*/
 
     Music_Pop(const Music_Pop &other);
     Music_Pop(Music_Pop &&other) noexcept;
