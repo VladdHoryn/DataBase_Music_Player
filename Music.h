@@ -6,7 +6,6 @@
 #include <fstream>
 #include "FileWasNotOpened.h"
 
-
 using namespace std;
 class Music{
 protected:
@@ -24,7 +23,7 @@ public:
     void New_name(string &&new_name);
     void New_author(string &&new_author);
     void New_longing(int &&new_longing);
-    virtual void Print() = 0;
+    virtual void Print() const = 0;
     Music(const Music &other);
     Music(Music &&other) noexcept;
 };
@@ -39,7 +38,7 @@ public:
     Music_Pop();
     Music_Pop(string &&new_name, string &&new_author, int &&new_longing, string &&new_genre);
     void Play_Music() override;
-    void Print() override;
+    void Print() const override;
     void New_genre(string &&new_genre);
     friend ostream &operator <<(ostream &os, Music_Pop &obj);
     friend istream &operator >>(istream &is, Music_Pop &obj);

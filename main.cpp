@@ -10,14 +10,14 @@
 #include <memory>
 
 template <typename T>
-vector<T> loadMenuFromFile(vector<T> array, string name_of_file) {
+vector<T> Read(vector<T> array, string name_of_file) {
     ifstream file(name_of_file);
     if (!file.is_open()) {
         cerr << "Error: Unable to open file." << endl;
     }
     array.clear();
 
-    if(name_of_file == "text.txt") {
+    if(name_of_file == "Music_Pop.txt") {
         string name, author, genre;
         double longing;
         while (file >> name >> author >> longing >> genre) {
@@ -25,17 +25,30 @@ vector<T> loadMenuFromFile(vector<T> array, string name_of_file) {
                                       forward<string>(genre)));
         }
     }
-
+    
+    file.close();
     return array;
+}
+
+template <typename T>
+void Write(vector<T> array, string name_of_file) {
+    ofstream file(name_of_file);
+    if (!file.is_open()) {
+        cerr << "Error: Unable to open file." << endl;
+    }
+
+    for (auto &i: array) {
+        i.Print();
+    }
+
+    file.close();
 }
 
 int main() {
     vector<Music_Pop> array;
-    string name_of_file = "text.txt";
-    array = loadMenuFromFile(array, name_of_file);
-    for (auto &i: array) {
-        i.Print();
-    }
-    array[0].Print();
+    string name_of_file = "Music_Pop.txt";
+    array = Read(array, name_of_file);
+    Write(array, name_of_file);
+
     return 0;
 }
