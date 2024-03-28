@@ -5,6 +5,8 @@
 #include "Music.cpp"
 #include "Subscription.cpp"
 #include "User.cpp"
+#include "Admin.h"
+#include "Admin.cpp"
 #include <vector>
 #include <fstream>
 #include <memory>
@@ -94,14 +96,17 @@ vector <T> Charnge_element(vector<T> array, int num)
 
 
 int main() {
+    Admin admin1("Vlad", "54321");
     string name_of_file_music = "Music_Pop.txt";
     string name_of_file_user = "User.txt";
     string name_of_file_PremiumUser = "PremiumUser.txt";
     string name_of_file_subscription = "Subscription.txt";
+    string name_of_file_admin = "Admin.txt";
     vector<User> array_user;
     vector<Music_Pop> array_music;
     vector<PremiumUser> array_PremiumUser;
     vector<Subscription> array_Subscription;
+    vector<Admin> array_admin;
 
     array_user = Read<User>(name_of_file_user);
     array_music = Read<Music_Pop>(name_of_file_music);
@@ -117,6 +122,7 @@ int main() {
     Write_in_File(array_music, name_of_file_music);
     Write_in_File(array_PremiumUser, name_of_file_PremiumUser);
     Write_in_File(array_Subscription, name_of_file_subscription);
+    Write_in_File(array_admin, name_of_file_admin);
 
     return 0;
 }
