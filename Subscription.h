@@ -6,7 +6,7 @@
 using namespace std;
 
 class Subscription {
-protected:
+public:
     shared_ptr<string> name = make_shared<string>();
     shared_ptr<int> price = make_shared<int>();
     shared_ptr<int> longing = make_shared<int>();
@@ -22,6 +22,8 @@ public:
     void Print();
     Subscription(const Subscription &other);
     Subscription(Subscription &&other) noexcept;
+    friend istream &operator >>(istream &is, Subscription &obj);
+    friend ostream &operator <<(ostream &os, Subscription &obj);
 };
 
 

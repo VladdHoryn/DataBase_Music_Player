@@ -15,7 +15,7 @@ protected:
 
 public:
     virtual ~Music(){
-        cout << "Music dectructor was called" << endl;
+        //cout << "Music dectructor was called" << endl;
     };
     Music();
     Music(string &&new_name, string &&new_author, int &&new_longing);
@@ -33,7 +33,7 @@ protected:
     shared_ptr<string> genre = make_shared<string>();
 public:
     virtual ~Music_Pop(){
-        cout << "Music_Pop dectructor was called" << endl;
+        //cout << "Music_Pop dectructor was called" << endl;
     };
     Music_Pop();
     Music_Pop(string &&new_name, string &&new_author, int &&new_longing, string &&new_genre);

@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include <memory>
+#include <vector>
 #include "Subscription.h"
 
 using namespace std;
@@ -16,7 +17,7 @@ struct Date{
 };
 
 class User {
-private:
+protected:
     shared_ptr<string> name = make_shared<string>();
     shared_ptr<string> nickname = make_shared<string>();
     shared_ptr<string> email = make_shared<string>();
@@ -32,6 +33,8 @@ public:
     virtual void Print();
     User(const User &other);
     User(User &&other);
+    friend ostream &operator <<(ostream &os, User &obj);
+    friend istream &operator >>(istream &is, User &obj);
 };
 
 class PremiumUser : public User{
@@ -39,10 +42,13 @@ protected:
     shared_ptr<Subscription> sub = make_shared<Subscription>();
     shared_ptr<int> rang = make_shared<int>();
 public:
+    virtual ~PremiumUser(){};
     PremiumUser();
     PremiumUser(string &&new_name, string &&new_nickname, string &&new_email, int &&new_day, int &&new_month, int &&new_year,
                 string &&new_name_sub, int &&new_price, int &&new_longing, string &&new_features, int &&new_rang);
     void Print() override;
+    friend istream &operator >>(istream &is, PremiumUser &obj);
+    friend ostream &operator <<(ostream &os, PremiumUser &obj);
 };
 
 #endif //DATABASE_MUSIC_PLAYER_USER_H

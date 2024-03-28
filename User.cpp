@@ -4,14 +4,14 @@
 #include "Subscription.h"
 
 User::~User() {
-    cout << "User destructor was called" << endl;
+    //cout << "User destructor was called" << endl;
 };
 User::User()
 : name{new string("Unknown")}, nickname{new string("Unknown")}, email{new string("Unknown")}, date{new Date(0, 0, 0)}{}
 User::User(std::string &&new_name, std::string &&new_nickname, std::string &&new_email, int &&new_day, int &&new_month,
            int &&new_year)
            : name{new string(new_name)}, nickname{new string(new_nickname)}, email{new string(new_email)}, date{new Date(new_day, new_month, new_year)}{
-    cout << "User constructor was called" << endl;
+    //cout << "User constructor was called" << endl;
 }
 
 void User::New_name(std::string &&new_name) {
@@ -43,6 +43,20 @@ void User::Print() {
     cout << date->year << endl;
 }
 
+ostream &operator <<(ostream &os, User &obj)
+{
+    os << *obj.name << " " << *obj.nickname<< " " << *obj.email << " " << obj.date->day << " " << obj.date->month << " "
+       << obj.date->year;
+    return os;
+
+}
+
+istream &operator >>(istream &is, User &obj)
+{
+    is >> *obj.name >> *obj.nickname >> *obj.email >> obj.date->day >> obj.date->month >> obj.date->year;
+    return is;
+}
+
 User::User(const User &other) {
     name = make_shared<string>(*other.name);
     *name = *other.name;
@@ -52,7 +66,7 @@ User::User(const User &other) {
     *email = *other.email;
     date = make_shared<Date>(*other.date);
     *date = *other.date;
-    cout << "Deep copy constryctor User was called" << endl;
+   // cout << "Deep copy constryctor User was called" << endl;
 }
 User::User(User &&other)
         : name{other.name}, nickname{other.nickname}, email{other.email}, date{other.date}{
@@ -60,7 +74,7 @@ User::User(User &&other)
     other.name = nullptr;
     other.email = nullptr;
     other.date = nullptr;
-    cout << "User move constructor was called" << endl;
+    //cout << "User move constructor was called" << endl;
 }
 //--------------------------------------------------------------------------------------------------------------------
 PremiumUser::PremiumUser()
@@ -72,11 +86,25 @@ PremiumUser::PremiumUser(std::string &&new_name, std::string &&new_nickname, std
                                 forward<int>(new_day), forward<int>(new_month), forward<int>(new_year)),
                                 sub(new Subscription(forward<string>(new_name_sub), forward<int>(new_price), forward<int>(new_longing),
                                                      forward<string>(new_features))), rang{new int (new_rang)} {                       // не працює конструктор до sub!!!!!!
-    cout << "PremiumUser costructor was called" << endl;
+    //cout << "PremiumUser costructor was called" << endl;
 }
 
 void PremiumUser::Print() {
     User::Print();
     sub->Print();
     cout << "Rang: " << *rang << endl;
+}
+
+istream &operator >>(istream &is, PremiumUser &obj)
+{
+    is >> *obj.name >> *obj.nickname >> *obj.email >> obj.date->day >> obj.date->month >> obj.date->year
+    >> *obj.sub->name >> *obj.sub->price >> *obj.sub->longing >> *obj.sub->features >> *obj.rang;
+    return is;
+}
+ostream &operator <<(ostream &os, PremiumUser &obj)
+{
+    os << " " << *obj.name << " " << *obj.nickname << " " <<  *obj.email << " " <<  obj.date->day << " "
+    <<  obj.date->month << " " <<  obj.date->year << " " <<  *obj.sub->name << " " <<  *obj.sub->price << " "
+    <<  *obj.sub->longing << " " <<  *obj.sub->features << " " <<  *obj.rang << endl;
+    return os;
 }
