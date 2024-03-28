@@ -72,6 +72,30 @@ istream &operator >>(istream &is, Music_Pop &obj)
     is >> *obj.name >> *obj.author >> *obj.longing >> *obj.genre;
     return is;
 }
+istream &operator >(istream &is, Music_Pop &obj)
+{
+    cout << "Enter name: ";
+    is >> *obj.name;
+    cout << "Enter author: ";
+    is >> *obj.author;
+    cout << "Enter longing: ";
+    is >> *obj.longing;
+    cout << "Enter genre: ";
+    is >> *obj.genre;
+    return is;
+}
+
+Music_Pop Music_Pop::operator=(Music_Pop &obj) {
+    if(this != &obj)
+    {
+        name = obj.name;
+        author = obj.author;
+        longing = obj.longing;
+        genre = obj.genre;
+
+    }
+    return *this;
+}
 
 Music_Pop::Music_Pop(const Music_Pop &other) : Music(other){
     genre = make_shared<string>(*other.genre);

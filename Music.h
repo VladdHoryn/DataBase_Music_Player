@@ -42,8 +42,8 @@ public:
     void New_genre(string &&new_genre);
     friend ostream &operator <<(ostream &os, Music_Pop &obj);
     friend istream &operator >>(istream &is, Music_Pop &obj);
-    /*void Read();
-    void Write();*/
+    friend istream &operator >(istream &is, Music_Pop &obj);
+    Music_Pop operator =(Music_Pop &obj);
 
     Music_Pop(const Music_Pop &other);
     Music_Pop(Music_Pop &&other) noexcept;

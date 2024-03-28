@@ -57,6 +57,36 @@ istream &operator >>(istream &is, User &obj)
     return is;
 }
 
+istream &operator >(istream &is, User &obj)
+{
+    cout << "Enter name: ";
+    is >> *obj.name;
+    cout << "Enter nickname: ";
+    is >> *obj.nickname;
+    cout << "Enter email: ";
+    is >> *obj.email;
+    cout << "Enter day: ";
+    is >> obj.date->day;
+    cout << "Enter mounth: ";
+    is >> obj.date->month;
+    cout << "Enter year: ";
+    is >> obj.date->year;
+    return is;
+}
+
+User User::operator=(User &obj) {
+    if(this != &obj)
+    {
+        name = obj.name;
+        nickname = obj.nickname;
+        email = obj.email;
+        date->day = obj.date->day;
+        date->month = obj.date->month;
+        date->year = obj.date->year;
+    }
+    return *this;
+}
+
 User::User(const User &other) {
     name = make_shared<string>(*other.name);
     *name = *other.name;
@@ -107,4 +137,49 @@ ostream &operator <<(ostream &os, PremiumUser &obj)
     <<  obj.date->month << " " <<  obj.date->year << " " <<  *obj.sub->name << " " <<  *obj.sub->price << " "
     <<  *obj.sub->longing << " " <<  *obj.sub->features << " " <<  *obj.rang << endl;
     return os;
+}
+
+istream &operator >(istream &is, PremiumUser &obj)
+{
+    cout << "Enter name: ";
+    is >> *obj.name;
+    cout << "Enter nickname: ";
+    is >> *obj.nickname;
+    cout << "Enter email: ";
+    is >> *obj.email;
+    cout << "Enter day: ";
+    is >> obj.date->day;
+    cout << "Enter mounth: ";
+    is >> obj.date->month;
+    cout << "Enter year: ";
+    is >> obj.date->year;
+    cout << "Enter Subscription name: ";
+    is >> *obj.sub->name;
+    cout << "Enter Subscription price: ";
+    is >> *obj.sub->price;
+    cout << "Enter Subscription longing: ";
+    is >> *obj.sub->longing;
+    cout << "Enter Subscription features: ";
+    is >> *obj.sub->features;
+    cout << "Enter rang: ";
+    is >> *obj.rang;
+    return is;
+}
+
+PremiumUser PremiumUser::operator=(PremiumUser &obj) {
+    if(this != &obj)
+    {
+        name = obj.name;
+        nickname = obj.nickname;
+        email = obj.email;
+        date->day = obj.date->day;
+        date->month = obj.date->month;
+        date->year = obj.date->year;
+        sub->name = obj.sub->name;
+        sub->price = obj.sub->price;
+        sub->longing = obj.sub->longing;
+        sub->features = obj.sub->features;
+        rang = obj.rang;
+    }
+    return *this;
 }

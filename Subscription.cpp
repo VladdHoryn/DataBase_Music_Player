@@ -65,3 +65,27 @@ ostream &operator <<(ostream &os, Subscription &obj)
     os << *obj.name << " " << *obj.price << " " << *obj.longing << " " << *obj.features << endl;
     return os;
 }
+
+istream &operator >(istream &is, Subscription &obj)
+{
+    cout << "Enter name: ";
+    is >> *obj.name;
+    cout << "Enter price: ";
+    is >> *obj.price;
+    cout << "Enter longing: ";
+    is >> *obj.longing;
+    cout << "Enter features: ";
+    is >> *obj.features;
+    return is;
+}
+
+Subscription Subscription::operator=(Subscription &obj) {
+    if(this != &obj)
+    {
+        name = obj.name;
+        price = obj.price;
+        longing = obj.longing;
+        features = obj.features;
+    }
+    return *this;
+}

@@ -24,6 +24,8 @@ public:
     Subscription(Subscription &&other) noexcept;
     friend istream &operator >>(istream &is, Subscription &obj);
     friend ostream &operator <<(ostream &os, Subscription &obj);
+    friend istream &operator >(istream &is, Subscription &obj);
+    Subscription operator =(Subscription &obj);
 };
 
 

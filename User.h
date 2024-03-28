@@ -35,6 +35,8 @@ public:
     User(User &&other);
     friend ostream &operator <<(ostream &os, User &obj);
     friend istream &operator >>(istream &is, User &obj);
+    friend istream &operator >(istream &is, User &obj);
+    User operator =(User &obj);
 };
 
 class PremiumUser : public User{
@@ -49,6 +51,8 @@ public:
     void Print() override;
     friend istream &operator >>(istream &is, PremiumUser &obj);
     friend ostream &operator <<(ostream &os, PremiumUser &obj);
+    friend istream &operator >(istream &is, PremiumUser &obj);
+    PremiumUser operator =(PremiumUser &obj);
 };
 
 #endif //DATABASE_MUSIC_PLAYER_USER_H

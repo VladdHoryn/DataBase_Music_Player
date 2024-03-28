@@ -1,2 +1,0 @@
-VIP 100 30 All_in
-Premium 75 30 Some_features
