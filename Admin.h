@@ -16,6 +16,9 @@ public:
     Admin(string &&new_nickname, string && new_password);
 
     bool check_password(string &guess_password);
+    bool Compare_nickname(string &obj);
+    bool Compare_password(string &obj);
+
     friend istream &operator>>(istream &is, Admin &obj);
     friend ostream &operator<<(ostream &os, Admin &obj);
     friend istream &operator>(istream &is, Admin &obj);

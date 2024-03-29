@@ -43,6 +43,13 @@ void User::Print() {
     cout << date->year << endl;
 }
 
+bool User::Compare_nickname(std::string &obj) {
+    string s = *nickname;
+    if(s == obj)
+        return true;
+    return false;
+}
+
 ostream &operator <<(ostream &os, User &obj)
 {
     os << *obj.name << " " << *obj.nickname<< " " << *obj.email << " " << obj.date->day << " " << obj.date->month << " "
@@ -123,6 +130,13 @@ void PremiumUser::Print() {
     User::Print();
     sub->Print();
     cout << "Rang: " << *rang << endl;
+}
+
+bool PremiumUser::Compare_nickname(std::string &obj) {
+    string s = *nickname;
+    if(s == obj)
+        return true;
+    return false;
 }
 
 istream &operator >>(istream &is, PremiumUser &obj)

@@ -30,6 +30,7 @@ public:
     void New_nickname(string &&new_nickname);
     void New_email(string &&new_email);
     void New_date(int &&new_day, int &&new_month, int &&new_year);
+    bool Compare_nickname(string &obj);
     virtual void Print();
     User(const User &other);
     User(User &&other);
@@ -49,6 +50,7 @@ public:
     PremiumUser(string &&new_name, string &&new_nickname, string &&new_email, int &&new_day, int &&new_month, int &&new_year,
                 string &&new_name_sub, int &&new_price, int &&new_longing, string &&new_features, int &&new_rang);
     void Print() override;
+    bool Compare_nickname(string &obj);
     friend istream &operator >>(istream &is, PremiumUser &obj);
     friend ostream &operator <<(ostream &os, PremiumUser &obj);
     friend istream &operator >(istream &is, PremiumUser &obj);

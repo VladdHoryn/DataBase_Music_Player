@@ -14,6 +14,20 @@ bool Admin::check_password(string &guess_password) {
         return false;
 }
 
+bool Admin::Compare_nickname(std::string &obj) {
+    string s = *nickname;
+    if(s == obj)
+        return true;
+    return false;
+}
+
+bool Admin::Compare_password(std::string &obj) {
+    string s = *password;
+    if(s == obj)
+        return true;
+    return false;
+}
+
 istream &operator>>(istream &is, Admin &obj)
 {
     is >> *obj.nickname >> *obj.password;
